@@ -1,9 +1,15 @@
+require('./models/User')
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const authRoutes = require('./routes/authRoutes')
 
 const app = express()
 
-app.get('/', (reg, res) => {
+app.use(bodyParser.json())
+app.use(authRoutes)
+
+app.get('/', (req, res) => {
     res.send('Hi there!')
 })
 
